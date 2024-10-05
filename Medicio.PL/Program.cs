@@ -1,4 +1,4 @@
-using Medicio.PL.Data;
+using Medicio.DLL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

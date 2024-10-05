@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Medicio.DAL.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Medicio.PL.Data
+namespace Medicio.DLL.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
@@ -9,5 +10,6 @@ namespace Medicio.PL.Data
             : base(options)
         {
         }
+        public DbSet<Service> Services {  get; set; } 
     }
 }
