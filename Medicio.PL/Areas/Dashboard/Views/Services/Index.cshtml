@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ServicesVM>
+
+@section Header {
+    services
+}
+@section loc {
+    services
+}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">show all services</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+
+                        <th>Name</th>
+                        <th>status</th>
+
+                        <th>action</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.IsDeleted</td>
+                            <td>
+                                <a asp-controller="services" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+
+                                <a asp-controller="services" asp-action="details" asp-route-id="@item.Id" class="btn btn-info">Details</a>
+
+                                <a asp-controller="services" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /.card -->
+
+
+</div>
