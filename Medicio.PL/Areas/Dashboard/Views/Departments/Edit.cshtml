@@ -1,0 +1,94 @@
+﻿@model DepartmentsFormVM
+@section Header {
+    Departments
+}
+@section loc {
+    edit
+}
+<div class="col-md-12">
+    <div class="card card-primary">
+        <div class="card-header">
+            <h3 class="card-title">Edit</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form asp-controller="Departments" asp-action="Edit" enctype="multipart/form-data">
+
+            <div class="card-body">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImageName" />
+                <div class="form-group">
+                    <label asp-for="Title">Title</label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter Department Title">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="line">Line</label>
+                    <input asp-for="line" class="form-control" placeholder="Enter Department Line">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Description">Description</label>
+                    <input asp-for="Description" class="textarea form-control" placeholder="Enter Department Description">
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="IsDeleted"></label>
+                    <input asp-for="IsDeleted">
+                    <span>@(Model.IsDeleted ? "Deleted" : "Active")</span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Image">Image</label>
+                    <input asp-for="Image" class="form-control imageinput" type="file">
+                </div>
+
+                <div class="form-group">
+                    <label>Current Image</label>
+                    <img src="~/Files/images/Departments/@Model.ImageName" id="imagePreview" style="max-width: 200px; display: @(string.IsNullOrEmpty(Model.ImageName) ? "none" : "block");" />
+                </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section script {
+    <script src="https://cdn.tiny.cloud/1/d4ibu8e8nuol9gjoru2l8orat5yy0zk40e04b4k4ia5ekibz/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: '.textarea',
+            plugins: [
+                'anchor', 'autolink', 'charmap', 'codesample', 'emoticons', 'image', 'link', 'lists', 'media', 'searchreplace', 'table', 'visualblocks', 'wordcount',
+                'checklist', 'mediaembed', 'casechange', 'export', 'formatpainter', 'pageembed', 'a11ychecker', 'tinymcespellchecker', 'permanentpen', 'powerpaste', 'advtable', 'advcode', 'editimage', 'advtemplate', 'ai', 'mentions', 'tinycomments', 'tableofcontents', 'footnotes', 'mergetags', 'autocorrect', 'typography', 'inlinecss', 'markdown',
+            ],
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject('See docs to implement AI Assistant')),
+        });
+    </script>
+
+    <script>
+        document.querySelector(".imageinput").addEventListener("change", (event) => {
+            const file = event.target.files[0];
+            const imagePreview = document.querySelector("#imagePreview");
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.style.display = "block";
+                    imagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}
