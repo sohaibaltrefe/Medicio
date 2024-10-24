@@ -13,6 +13,8 @@ namespace Medicio.DAL.Models
         public decimal Price { get; set; } 
         
         public List<string> Features { get; set; }
+        public bool Isna { get; set; }
+
         public bool IsDeleted { get; set; }
 
     }

@@ -10,6 +10,7 @@ namespace Medicio.PL.Areas.Dashboard.ViewModels.DoctorsVIMO
 
         public string? ImageName { get; set; }
         public int? DepartmentId { get; set; }
+        public string jop { get; set; }
 
         public SelectList? Departments { get; set; }
         public bool IsDeleted { get; set; }

@@ -4,12 +4,13 @@ using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.DepartmentsVIMO;
 using Medicio.PL.Areas.Dashboard.ViewModels.ServiceVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
-
+    
     public class DepartmentsController : Controller
     {
         private readonly ApplicationDbContext context;

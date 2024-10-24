@@ -92,6 +92,10 @@ namespace Medicio.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Tabs")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -127,6 +131,10 @@ namespace Medicio.DAL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("jop")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -178,6 +186,9 @@ namespace Medicio.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Isna")
                         .HasColumnType("bit");
 
                     b.Property<decimal>("Price")

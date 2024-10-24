@@ -12,6 +12,7 @@ namespace Medicio.DAL.Models
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
         public string ImageName { get; set; }
+        public string jop { get; set; }
 
         public DateTime CreatedAT { get; set; } = DateTime.Now;
         public int DepartmentId { get; set; }
