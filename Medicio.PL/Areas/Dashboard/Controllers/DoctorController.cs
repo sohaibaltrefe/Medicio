@@ -3,6 +3,7 @@ using landing.PL.Helpers;
 using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.DoctorsVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
     [Area("Dashboard")]
+    [Authorize(Roles = "Admin,SuperAdmin")]
 
     public class DoctorController : Controller
     {

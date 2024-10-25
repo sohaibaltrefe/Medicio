@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
     [Area("Dashboard")]
     
     public class DepartmentsController : Controller

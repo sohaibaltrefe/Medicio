@@ -3,13 +3,14 @@ using landing.PL.Helpers;
 using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.AppointmentVIMO;
-using Medicio.PL.Areas.Dashboard.ViewModels.DepartmentsVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
+    [Authorize]
     [Area("Dashboard")]
     public class AppointmentController : Controller
     {

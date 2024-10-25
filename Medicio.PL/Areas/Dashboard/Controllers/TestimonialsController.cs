@@ -4,10 +4,13 @@ using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.ServiceVIMO;
 using Medicio.PL.Areas.Dashboard.ViewModels.TestimonialsVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
     [Area("Dashboard")]
 
     public class TestimonialsController : Controller

@@ -1,3 +1,4 @@
+﻿using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Mapping;
 using Microsoft.AspNetCore.Identity;
@@ -13,13 +14,28 @@ namespace Medicio.PL
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // Configure Identity
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+            })
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultUI()
+            .AddDefaultTokenProviders();
+
+            // Configure Authentication to use custom login path
+            builder.Services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login"; // صفحة تسجيل الدخول المخصصة
+                options.AccessDeniedPath = "/Account/AccessDenied"; // صفحة رفض الوصول
+            });
+
             builder.Services.AddControllersWithViews();
             builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile)));
 
@@ -33,7 +49,6 @@ namespace Medicio.PL
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -42,14 +57,18 @@ namespace Medicio.PL
 
             app.UseRouting();
 
+            // Add the authentication middleware
+            app.UseAuthentication(); // Ensure authentication middleware is used
             app.UseAuthorization();
-       
-                app.MapControllerRoute(
-                 name: "areas",
-            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+            app.MapControllerRoute(
+                name: "areas",
+                pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.MapRazorPages();
 
             app.Run();

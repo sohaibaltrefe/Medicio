@@ -2,10 +2,13 @@
 using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.FeaturesVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
     [Area("Dashboard")]
     public class FeaturesController : Controller
     {

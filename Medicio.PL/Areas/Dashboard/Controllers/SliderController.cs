@@ -3,11 +3,14 @@ using landing.PL.Helpers;
 using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.SliderVIMO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Policy;
 
 namespace Medicio.PL.Areas.Dashboard.Controllers
 {
+    [Authorize(Roles = "Admin,SuperAdmin")]
+
     [Area("Dashboard")]
     public class SliderController : Controller
     {
