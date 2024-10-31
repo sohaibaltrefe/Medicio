@@ -14,5 +14,6 @@ namespace Medicio.PL.Helpers
             client.Send("sohaibshaltafaltrefe@gmail.com",email.Recivers,email.Subject,email.Body);
 
         }
+      
     }
 }

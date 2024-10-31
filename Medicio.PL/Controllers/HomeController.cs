@@ -3,6 +3,7 @@ using Medicio.DAL.Migrations;
 using Medicio.DAL.Models;
 using Medicio.DLL.Data;
 using Medicio.PL.Areas.Dashboard.ViewModels.AppointmentVIMO;
+using Medicio.PL.Helpers;
 using Medicio.PL.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -69,5 +70,27 @@ namespace Medicio.PL.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        [HttpPost]
+        public IActionResult SendEmail(string name, string email, string subject, string message)
+        {
+            Email emailMessage = new Email
+            {
+                Recivers = "sohaibshaltafaltrefe@gmail.com", // البريد المرسل إليه
+                Subject = subject,
+                Body = $"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
+            };
+
+            try
+            {
+                // إرسال البريد الإلكتروني
+                EmailSettings.SendEmail(emailMessage);
+                return Json(new { success = true, message = "Your message has been sent successfully!" });
+            }
+            catch (Exception)
+            {
+                return Json(new { success = false, message = "There was an error sending your message. Please try again later." });
+            }
+        }
+
     }
 }
