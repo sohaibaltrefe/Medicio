@@ -10,8 +10,9 @@
             string filepath = Path.Combine (folderpath, fileName);
             var filestrem=new FileStream(filepath,FileMode.Create);
             file.CopyTo(filestrem);
+            filestrem.Close();
 
-                      return fileName;
+            return fileName;
         }
         public static void DeleteFile(string filename, string FolderName)
         {

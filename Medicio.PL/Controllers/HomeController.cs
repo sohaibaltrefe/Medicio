@@ -55,8 +55,9 @@ namespace Medicio.PL.Controllers
                 AppointmentFormVM = appointmentVMs
 
             };
+            bool isAdmin = User.IsInRole("Admin") || User.IsInRole("SuperAdmin");
+            ViewBag.IsAdminOrSuperAdmin = isAdmin;
 
-            // تمرير ViewModel إلى View
             return View(viewModel);
         }
 

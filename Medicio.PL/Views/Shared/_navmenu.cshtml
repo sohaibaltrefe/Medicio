@@ -2,6 +2,15 @@
 
     <div class="topbar d-flex align-items-center">
         <div class="container d-flex justify-content-center justify-content-md-between">
+            @if (ViewBag.IsAdminOrSuperAdmin == true)
+            {
+
+
+                <a asp-area="Dashboard" asp-controller="Departments" asp-action="Index" class="nav-link">
+                    <i class="fas fa-bars">dash</i>
+                </a>
+
+            }
             <div class="d-none d-md-flex align-items-center">
                 <i class="bi bi-clock me-1"></i> Monday - Saturday, 8AM to 10PM
             </div>
@@ -14,11 +23,13 @@
     <div class="branding d-flex align-items-center">
 
         <div class="container position-relative d-flex align-items-center justify-content-end">
+           
             <a asp-area="Dashboard" asp-controller="Appointment" class="logo d-flex align-items-center me-auto">
                 <img src="~/Files/img/logo.png" alt="">
                 <!-- Uncomment the line below if you also wish to use a text logo -->
                 <!-- <h1 class="sitename">Medicio</h1>  -->
             </a>
+          
 
             <nav id="navmenu" class="navmenu">
                 <ul>
@@ -36,7 +47,7 @@
             <a class="cta-btn" href="#appointment">Make an Appointment</a>
 
         </div>
-
+        
     </div>
 
 </header>
