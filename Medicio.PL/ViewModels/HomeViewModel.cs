@@ -7,7 +7,7 @@ namespace Medicio.PL.ViewModels
 {
     public class HomeViewModel
     {
-        public List<Appointment> Appointments { get; set; }
+          public List<Appointment> Appointments { get; set; }
         public List<Departments> Departments { get; set; }
         public List<Doctors> Doctors { get; set; }
         public List<Features> Features { get; set; }

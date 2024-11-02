@@ -71,6 +71,7 @@ namespace Medicio.PL.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+       
         [HttpPost]
         public IActionResult SendEmail(string name, string email, string subject, string message)
         {
