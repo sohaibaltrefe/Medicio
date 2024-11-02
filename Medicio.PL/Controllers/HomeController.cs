@@ -22,7 +22,7 @@ namespace Medicio.PL.Controllers
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context,IMapper mapper)
         {
             _logger = logger;
-            this.context = context; // تم تصحيح التعيين هنا
+            this.context = context; 
             this.mapper = mapper;
         }
 
