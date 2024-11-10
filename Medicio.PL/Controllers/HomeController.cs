@@ -77,7 +77,7 @@ namespace Medicio.PL.Controllers
         {
             Email emailMessage = new Email
             {
-                Recivers = "sohaibshaltafaltrefe@gmail.com", // البريد المرسل إليه
+                Recivers = "sohaibshaltafaltrefe1@gmail.com", // البريد المرسل إليه
                 Subject = subject,
                 Body = $"Name: {name}\nEmail: {email}\n\nMessage:\n{message}"
             };
